@@ -31,6 +31,7 @@ public class Game {
 
     MessageCli.PRINT_INFO_HAND.printMessage(
         playerName, inputFingers); // prints the player name and the number of fingers
+    roundNumber++; // increments the round number
   }
 
   public void endGame() {}
