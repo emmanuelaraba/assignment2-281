@@ -6,4 +6,9 @@ public class Hard implements Bot {
   public void returnName() {
     System.out.println("Hard Bot");
   }
+
+  @Override
+  public int BotLogic() {
+    return 3;
+  }
 }

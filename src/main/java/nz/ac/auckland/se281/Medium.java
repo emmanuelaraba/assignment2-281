@@ -6,4 +6,9 @@ public class Medium implements Bot {
   public void returnName() {
     System.out.println("Medium Bot");
   }
+
+  @Override
+  public int BotLogic() {
+    return 2;
+  }
 }

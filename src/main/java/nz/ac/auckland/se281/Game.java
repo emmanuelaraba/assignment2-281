@@ -8,11 +8,15 @@ public class Game {
   public int roundNumber = 1;
   public String playerName;
   public Bot bot; // Bot object
+  public String choice; // choice of the player (EVEN or ODD)
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
     this.playerName = options[0];
     this.bot = BotFactory.setStrategy(difficulty.toString()); // sets the bot strategy
+    this.choice = choice.toString(); // sets the choice
+
+    roundNumber = 1; // resets the round number
   }
 
   public void play() {
