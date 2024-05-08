@@ -5,12 +5,12 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 /** This class represents the Game is the main entry point. */
 public class Game {
-  public static int roundNumber = 1;
-  public static String playerName;
+  public int roundNumber = 1;
+  public String playerName;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
-    Game.playerName = options[0];
+    this.playerName = options[0];
   }
 
   public void play() {
