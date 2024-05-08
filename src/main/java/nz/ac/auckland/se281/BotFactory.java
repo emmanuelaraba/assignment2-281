@@ -2,7 +2,7 @@ package nz.ac.auckland.se281;
 
 public class BotFactory {
 
-  public static Bot setStrategy(String bot) {
+  public Bot makeBot(String bot) {
 
     switch (bot) {
       case "EASY":

@@ -1,15 +1,15 @@
 package nz.ac.auckland.se281;
 
 public class Easy implements Bot {
+  Strategy strategy = null;
 
-  @Override
-  public void returnName() {
-    System.out.println("Easy Bot");
+  public void chooseStrat() {
+    // generates a random number between 0 and 5
+    this.strategy = new RandomStrat();
   }
 
   @Override
-  public int BotLogic() {
-    // generates a random number between 0 and 5
-    return Utils.random.nextInt(6);
+  public int returnMove() {
+    return this.strategy.returnMove();
   }
 }
