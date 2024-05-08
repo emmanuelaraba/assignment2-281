@@ -7,10 +7,12 @@ import nz.ac.auckland.se281.Main.Difficulty;
 public class Game {
   public int roundNumber = 1;
   public String playerName;
+  public Bot bot; // Bot object
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
     this.playerName = options[0];
+    this.bot = BotFactory.setStrategy(difficulty.toString()); // sets the bot strategy
   }
 
   public void play() {
