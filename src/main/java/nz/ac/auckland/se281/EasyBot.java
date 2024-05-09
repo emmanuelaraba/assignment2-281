@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Easy implements Bot {
+public class EasyBot implements Bot {
   Strategy strategy = null;
 
   public void chooseStrat() {
@@ -10,6 +10,6 @@ public class Easy implements Bot {
 
   @Override
   public int returnMove() {
-    return this.strategy.returnMove();
+    return this.strategy.chooseMove();
   }
 }

@@ -13,7 +13,7 @@ public class Game {
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
     this.playerName = options[0];
-    this.bot = BotFactory.makeBot(difficulty.toString()); // sets the bot strategy
+    this.bot = BotFactory.makeBot(difficulty); // creates a new bot
     this.choice = choice.toString(); // sets the choice
 
     roundNumber = 1; // resets the round number
@@ -26,8 +26,6 @@ public class Game {
 
     MessageCli.ASK_INPUT.printMessage();
     String inputFingers = Utils.scanner.nextLine(); // reads input from the user
-
-    int move = bot.BotLogic(); // calls the bot logic
 
     // if the input is not a number between 0 and 5, print error message and prompt again
     int InputFingersInt = Integer.parseInt(inputFingers);

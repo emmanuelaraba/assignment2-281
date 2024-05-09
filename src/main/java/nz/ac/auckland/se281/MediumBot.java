@@ -1,14 +1,14 @@
 package nz.ac.auckland.se281;
 
-public class Medium implements Bot {
+public class MediumBot implements Bot {
 
   @Override
-  public void returnName() {
+  public void chooseStrat() {
     System.out.println("Medium Bot");
   }
 
   @Override
-  public int BotLogic() {
+  public int returnMove() {
     return 2;
   }
 }

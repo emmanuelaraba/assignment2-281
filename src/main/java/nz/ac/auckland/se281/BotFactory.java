@@ -1,16 +1,18 @@
 package nz.ac.auckland.se281;
 
+import nz.ac.auckland.se281.Main.Difficulty;
+
 public class BotFactory {
 
-  public Bot makeBot(String bot) {
+  public static Bot makeBot(Difficulty difficulty) {
 
-    switch (bot) {
-      case "EASY":
-        return new Easy();
-      case "MEDIUM":
-        return new Medium();
-      case "HARD":
-        return new Hard();
+    switch (difficulty) {
+      case EASY:
+        return new EasyBot();
+      case MEDIUM:
+        return new MediumBot();
+      case HARD:
+        return new HardBot();
       default:
         MessageCli.INVALID_DIFFICULTY.printMessage();
     }

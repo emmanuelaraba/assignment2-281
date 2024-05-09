@@ -1,14 +1,14 @@
 package nz.ac.auckland.se281;
 
-public class Hard implements Bot {
+public class HardBot implements Bot {
 
   @Override
-  public void returnName() {
+  public void chooseStrat() {
     System.out.println("Hard Bot");
   }
 
   @Override
-  public int BotLogic() {
+  public int returnMove() {
     return 3;
   }
 }
