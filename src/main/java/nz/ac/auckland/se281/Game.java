@@ -10,7 +10,7 @@ public class Game {
   private Bot bot; // Bot object
   private Choice playerChoice; // choice of the player (EVEN or ODD)
   private String inputFingers; // input from the player
-  final String computerName = "HAL 9000"; // name of the computer bot "HAL 9000
+  final String computerName = "HAL-9000"; // name of the computer bot "HAL 9000
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
@@ -35,13 +35,13 @@ public class Game {
       if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", playerName);
       } else if (playerChoice == Choice.ODD) {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", computerName);
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", computerName);
       }
     } else {
       if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", playerName);
       } else if (playerChoice == Choice.EVEN) {
-        MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", computerName);
+        MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", computerName);
       }
     }
   }
@@ -69,11 +69,16 @@ public class Game {
     MessageCli.ASK_INPUT.printMessage();
     inputFingers = Utils.scanner.nextLine(); // reads input from the user
 
+    int botMove = bot.returnMove();
+    String botMoveString = Integer.toString(botMove);
+
     checkInput(); // checks if the input is valid
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, inputFingers);
+    MessageCli.PRINT_INFO_HAND.printMessage(computerName, botMoveString);
+
+    roundNumber++;
 
     // find the winner by using the bot's move
-    int botMove = bot.returnMove();
     getWinner(botMove);
   }
 
