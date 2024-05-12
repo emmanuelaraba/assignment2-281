@@ -34,13 +34,13 @@ public class Game {
     if (sum % 2 == 0) {
       if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", playerName);
-      } else {
+      } else if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", computerName);
       }
     } else {
       if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", playerName);
-      } else {
+      } else if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", computerName);
       }
     }
@@ -69,9 +69,7 @@ public class Game {
     MessageCli.ASK_INPUT.printMessage();
     inputFingers = Utils.scanner.nextLine(); // reads input from the user
 
-    // if the input is not a number between 0 and 5, print error message and prompt again
-    checkInput();
-
+    checkInput(); // checks if the input is valid
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, inputFingers);
 
     // find the winner by using the bot's move
