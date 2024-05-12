@@ -21,6 +21,10 @@ public class Game {
     roundNumber = 1; // resets the round number
   }
 
+  /*
+   * This method calculates the sum of the player's input and the bot's move and checks if it is even or odd. It then prints the outcome of the round.
+   * @param botMove  the bot's move, as an integer
+   */
   public void getWinner(int botMove) {
     int inputFingersInt = Integer.parseInt(inputFingers);
     int sum = inputFingersInt + botMove;
@@ -40,26 +44,34 @@ public class Game {
     }
   }
 
-  public void play() {
-    MessageCli.START_ROUND.printMessage(Integer.toString(roundNumber));
+  public void checkInput() {
+    int playerFingers = Integer.parseInt(inputFingers);
 
-    MessageCli.ASK_INPUT.printMessage();
-    this.inputFingers = Utils.scanner.nextLine(); // reads input from the user
-
-    // if the input is not a number between 0 and 5, print error message and prompt again
-    int InputFingersInt = Integer.parseInt(inputFingers);
-
-    while (InputFingersInt < 0 || InputFingersInt > 5) {
+    while (playerFingers < 0 || playerFingers > 5) {
       MessageCli.INVALID_INPUT.printMessage();
       MessageCli.ASK_INPUT.printMessage();
       inputFingers = Utils.scanner.nextLine();
-      InputFingersInt = Integer.parseInt(inputFingers);
+      playerFingers = Integer.parseInt(inputFingers);
     }
+  }
 
-    // checks the
+  public void play() {
+    // welcomes player to the game \
+    MessageCli.START_ROUND.printMessage(Integer.toString(roundNumber));
+
+    // asks the player for input
+    MessageCli.ASK_INPUT.printMessage();
+    inputFingers = Utils.scanner.nextLine(); // reads input from the user
+
+    // if the input is not a number between 0 and 5, print error message and prompt again
+    checkInput();
 
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, inputFingers);
     roundNumber++;
+
+    // find the winner by using the bot's move
+    int botMove = bot.returnMove();
+    getWinner(botMove);
   }
 
   public void endGame() {}
