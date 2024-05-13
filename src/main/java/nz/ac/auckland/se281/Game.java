@@ -23,6 +23,15 @@ public class Game {
   }
 
   /**
+   * this method returns the player's choice
+   *
+   * @return playerChoice the player's choice
+   */
+  public Choice getPlayerChoice() {
+    return playerChoice;
+  }
+
+  /**
    * This method returns the round number.
    *
    * @return roundnumber the round number
