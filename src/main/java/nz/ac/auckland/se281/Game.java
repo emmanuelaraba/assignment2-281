@@ -12,7 +12,7 @@ public class Game {
   private Choice playerChoice; // choice of the player (EVEN or ODD)
   private String inputFingers; // input from the player
   final String computerName = "HAL-9000"; // name of the computer bot "HAL 9000
-  private ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
+  public ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
@@ -20,6 +20,19 @@ public class Game {
     this.bot = BotFactory.makeBot(difficulty); // creates a new bot
     this.playerChoice = choice; // sets the choice
     roundNumber = 1; // resets the round number
+  }
+
+  /**
+   * This method returns the round number.
+   *
+   * @return roundnumber the round number
+   */
+  public int getRoundNumber() {
+    return roundNumber;
+  }
+
+  public ArrayList<Integer> getPlayerFingersList() {
+    return playerFingersList;
   }
 
   /**
