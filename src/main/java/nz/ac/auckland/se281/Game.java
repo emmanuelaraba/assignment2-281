@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.util.*;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -11,13 +12,13 @@ public class Game {
   private Choice playerChoice; // choice of the player (EVEN or ODD)
   private String inputFingers; // input from the player
   final String computerName = "HAL-9000"; // name of the computer bot "HAL 9000
+  private ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
     this.playerName = options[0];
     this.bot = BotFactory.makeBot(difficulty); // creates a new bot
     this.playerChoice = choice; // sets the choice
-
     roundNumber = 1; // resets the round number
   }
 
@@ -68,6 +69,7 @@ public class Game {
     // asks the player for input
     MessageCli.ASK_INPUT.printMessage();
     inputFingers = Utils.scanner.nextLine(); // reads input from the user
+    playerFingersList.add(Integer.parseInt(inputFingers));
 
     int botMove = bot.returnMove();
     String botMoveString = Integer.toString(botMove);
