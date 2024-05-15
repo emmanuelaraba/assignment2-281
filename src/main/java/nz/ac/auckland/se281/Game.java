@@ -140,5 +140,12 @@ public class Game {
     gameStarted = false;
   }
 
-  public void showStats() {}
+  public void showStats() {
+    if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        playerName, Integer.toString(stats.getPlayerWins()), Integer.toString(stats.getBotWins()));
+  }
 }
