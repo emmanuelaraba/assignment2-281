@@ -14,6 +14,7 @@ public class Game {
   final String computerName = "HAL-9000"; // name of the computer bot "HAL 9000
   private ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
   private Stats stats;
+  private boolean gameStarted = false;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
@@ -22,6 +23,7 @@ public class Game {
     roundNumber = 1; // resets the round number
     this.stats = new Stats(playerFingersList, playerChoice);
     this.bot = BotFactory.makeBot(difficulty, stats);
+    gameStarted = true;
   }
 
   /**
@@ -69,6 +71,10 @@ public class Game {
   }
 
   public void play() {
+    if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
     // welcomes player to the game \
     MessageCli.START_ROUND.printMessage(Integer.toString(roundNumber));
 

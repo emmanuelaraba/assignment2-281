@@ -13,7 +13,11 @@ public class HardBot implements Bot {
     if (stats.getRoundNumber() >= 3) {
       strategy = new TopStrat(stats);
     } else {
-      strategy = new RandomStrat();
+      if (stats.getLastWin()) {
+        strategy = new TopStrat(stats);
+      } else {
+        strategy = new RandomStrat();
+      }
     }
   }
 

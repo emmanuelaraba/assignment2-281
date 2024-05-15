@@ -14,11 +14,7 @@ public class MediumBot implements Bot {
     if (stats.getRoundNumber() >= 3) {
       strategy = new TopStrat(stats);
     } else {
-      if (stats.getLastWin()) {
-        strategy = new TopStrat(stats);
-      } else {
-        strategy = new RandomStrat();
-      }
+      strategy = new RandomStrat();
     }
   }
 
