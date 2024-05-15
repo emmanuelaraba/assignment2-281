@@ -40,17 +40,21 @@ public class Game {
       if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", playerName);
         stats.setLastWin(false);
+        stats.incrementPlayerWins();
       } else if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", computerName);
         stats.setLastWin(true);
+        stats.incrementBotWins();
       }
     } else {
       if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", playerName);
         stats.setLastWin(false);
+        stats.incrementPlayerWins();
       } else if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", computerName);
         stats.setLastWin(true);
+        stats.incrementBotWins();
       }
     }
   }
@@ -68,34 +72,6 @@ public class Game {
       inputFingers = Utils.scanner.nextLine();
       playerFingers = Integer.parseInt(inputFingers);
     }
-  }
-
-  public void play() {
-    if (!gameStarted) {
-      MessageCli.GAME_NOT_STARTED.printMessage();
-      return;
-    }
-    // welcomes player to the game \
-    MessageCli.START_ROUND.printMessage(Integer.toString(roundNumber));
-
-    // asks the player for input
-    MessageCli.ASK_INPUT.printMessage();
-    inputFingers = Utils.scanner.nextLine(); // reads input from the user
-    playerFingersList.add(Integer.parseInt(inputFingers));
-
-    int botMove = bot.returnMove();
-    String botMoveString = Integer.toString(botMove);
-
-    checkInput(); // checks if the input is valid
-    MessageCli.PRINT_INFO_HAND.printMessage(playerName, inputFingers);
-    MessageCli.PRINT_INFO_HAND.printMessage(computerName, botMoveString);
-
-    // find the winner by using the bot's move
-    getWinner(botMove);
-    roundNumber++;
-    stats.incrementRoundNumber();
-    findOddCount();
-    findEvenCount();
   }
 
   /**
@@ -125,7 +101,42 @@ public class Game {
     stats.setEvenCount(count);
   }
 
-  public void endGame() {}
+  public void play() {
+    if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+    }
+    // welcomes player to the game \
+    MessageCli.START_ROUND.printMessage(Integer.toString(roundNumber));
+
+    // asks the player for input
+    MessageCli.ASK_INPUT.printMessage();
+    inputFingers = Utils.scanner.nextLine(); // reads input from the user
+    playerFingersList.add(Integer.parseInt(inputFingers));
+
+    int botMove = bot.returnMove();
+    String botMoveString = Integer.toString(botMove);
+
+    checkInput(); // checks if the input is valid
+    MessageCli.PRINT_INFO_HAND.printMessage(playerName, inputFingers);
+    MessageCli.PRINT_INFO_HAND.printMessage(computerName, botMoveString);
+
+    // find the winner by using the bot's move
+    getWinner(botMove);
+    roundNumber++;
+    stats.incrementRoundNumber();
+    findOddCount();
+    findEvenCount();
+  }
+
+  public void endGame() {
+    if (stats.getBotWins() > stats.getPlayerWins()) {
+      MessageCli.PRINT_END_GAME.printMessage(computerName);
+    } else if (stats.getBotWins() < stats.getPlayerWins()) {
+      MessageCli.PRINT_END_GAME.printMessage(playerName);
+    } else {
+      MessageCli.PRINT_END_GAME_TIE.printMessage();
+    }
+  }
 
   public void showStats() {}
 }
