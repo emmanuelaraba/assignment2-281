@@ -6,13 +6,13 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 /** This class represents the Game is the main entry point. */
 public class Game {
-  private int roundNumber = 1;
+  private int roundNumber;
   private String playerName;
   private Bot bot; // Bot object
   private Choice playerChoice; // choice of the player (EVEN or ODD)
   private String inputFingers; // input from the player
   final String computerName = "HAL-9000"; // name of the computer bot "HAL 9000
-  public ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
+  private ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
@@ -20,6 +20,10 @@ public class Game {
     this.bot = BotFactory.makeBot(difficulty); // creates a new bot
     this.playerChoice = choice; // sets the choice
     roundNumber = 1; // resets the round number
+  }
+
+  public Game getGame() {
+    return this;
   }
 
   /**
@@ -100,10 +104,12 @@ public class Game {
     MessageCli.PRINT_INFO_HAND.printMessage(playerName, inputFingers);
     MessageCli.PRINT_INFO_HAND.printMessage(computerName, botMoveString);
 
-    roundNumber++;
-
     // find the winner by using the bot's move
     getWinner(botMove);
+    for (Integer integer : playerFingersList) {
+      System.out.println(integer);
+    }
+    roundNumber++;
   }
 
   public void endGame() {}
