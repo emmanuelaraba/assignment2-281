@@ -10,6 +10,8 @@ public class Stats {
   private Choice playerChoice;
   private int roundNumber = 0;
   private boolean lastWin;
+  private int botWins = 0;
+  private int playerWins = 0;
 
   public Stats(ArrayList<Integer> moves, Choice playerChoice) {
     this.moves = moves;
@@ -55,5 +57,21 @@ public class Stats {
 
   public boolean getLastWin() {
     return lastWin;
+  }
+
+  public void incrementBotWins() {
+    botWins++;
+  }
+
+  public void incrementPlayerWins() {
+    playerWins++;
+  }
+
+  public int getBotWins() {
+    return botWins;
+  }
+
+  public int getPlayerWins() {
+    return playerWins;
   }
 }
