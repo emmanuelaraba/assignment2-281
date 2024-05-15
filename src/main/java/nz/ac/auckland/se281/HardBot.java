@@ -29,7 +29,7 @@ public class HardBot implements Bot {
   /**
    * This method returns the move based on the strategy chosen.
    *
-   * @return the move based on the strategy chosen
+   * @return the move based on the strategy chosen.
    */
   @Override
   public int returnMove() {

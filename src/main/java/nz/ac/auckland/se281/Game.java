@@ -91,6 +91,7 @@ public class Game {
 
   /**
    * This method finds the number of odd numbers in the player's input and sets the odd count in the
+   * stats object.
    */
   public void findOddCount() {
     int count = 0;
@@ -151,7 +152,14 @@ public class Game {
     findEvenCount();
   }
 
+  /** This method ends the game and prints the winner of the game. */
   public void endGame() {
+    // if the game has not started, print an error message
+    if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+    // checking which player has more wins
     if (stats.getBotWins() > stats.getPlayerWins()) {
       MessageCli.PRINT_END_GAME.printMessage(computerName);
     } else if (stats.getBotWins() < stats.getPlayerWins()) {

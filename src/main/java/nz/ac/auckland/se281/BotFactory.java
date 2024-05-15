@@ -9,15 +9,14 @@ public class BotFactory {
   /**
    * Factory method to create a bot based on the difficulty level.
    *
-   * @param difficulty
-   * @param stats
-   * @return
+   * @param difficulty - the difficulty choice from the player input
+   * @param stats - the stats class which contains the statistics for the round we are in
+   * @return Bot - the bot of the difficulty of our choosing
    */
   public static Bot makeBot(Difficulty difficulty, Stats stats) {
     // bot factory method using factory pattern
-
+    // create a bot based on the difficulty level
     switch (difficulty) {
-        // create a bot based on the difficulty level
       case EASY:
         return new EasyBot();
       case MEDIUM:
