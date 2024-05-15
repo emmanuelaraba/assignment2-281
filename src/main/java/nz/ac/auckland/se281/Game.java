@@ -18,10 +18,10 @@ public class Game {
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
     this.playerName = options[0];
-    this.bot = BotFactory.makeBot(difficulty); // creates a new bot
+    this.stats = new Stats(playerFingersList, playerChoice); // creates a new stats object
+    this.bot = BotFactory.makeBot(difficulty, stats); // creates a new bot
     this.playerChoice = choice; // sets the choice
     roundNumber = 1; // resets the round number
-    stats = new Stats(playerFingersList, playerChoice); // creates a new stats object
   }
 
   /**
@@ -83,6 +83,10 @@ public class Game {
     // find the winner by using the bot's move
     getWinner(botMove);
     roundNumber++;
+    stats.incrementRoundNumber();
+    System.out.println(stats.getMoves().toString());
+    System.out.println(stats.getEvenCount());
+    System.out.println(stats.getOddCount());
   }
 
   public void endGame() {}
