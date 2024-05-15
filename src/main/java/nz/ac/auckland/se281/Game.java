@@ -13,6 +13,7 @@ public class Game {
   private String inputFingers; // input from the player
   final String computerName = "HAL-9000"; // name of the computer bot "HAL 9000
   private ArrayList<Integer> playerFingersList = new ArrayList<Integer>();
+  private Stats stats;
 
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
@@ -20,32 +21,7 @@ public class Game {
     this.bot = BotFactory.makeBot(difficulty); // creates a new bot
     this.playerChoice = choice; // sets the choice
     roundNumber = 1; // resets the round number
-  }
-
-  public Game getGame() {
-    return this;
-  }
-
-  /**
-   * this method returns the player's choice
-   *
-   * @return playerChoice the player's choice
-   */
-  public Choice getPlayerChoice() {
-    return playerChoice;
-  }
-
-  /**
-   * This method returns the round number.
-   *
-   * @return roundnumber the round number
-   */
-  public int getRoundNumber() {
-    return roundNumber;
-  }
-
-  public ArrayList<Integer> getPlayerFingersList() {
-    return playerFingersList;
+    stats = new Stats(playerFingersList, playerChoice); // creates a new stats object
   }
 
   /**
@@ -106,9 +82,6 @@ public class Game {
 
     // find the winner by using the bot's move
     getWinner(botMove);
-    for (Integer integer : playerFingersList) {
-      System.out.println(integer);
-    }
     roundNumber++;
   }
 

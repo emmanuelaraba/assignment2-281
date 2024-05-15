@@ -12,6 +12,10 @@ public class TopStrat implements Strategy {
     this.playerChoice = playerChoice;
   }
 
+  public int getRoundNumber() {
+    return moves.size();
+  }
+
   public int returnTopChoice() {
     // count the number of odd numbers in the fingers list
     int oddCount = 0;
