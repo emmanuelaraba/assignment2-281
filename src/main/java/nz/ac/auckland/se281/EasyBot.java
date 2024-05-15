@@ -2,11 +2,6 @@ package nz.ac.auckland.se281;
 
 public class EasyBot implements Bot {
   private Strategy strategy;
-  private Stats stats;
-
-  public EasyBot(Stats stats) {
-    this.stats = stats;
-  }
 
   @Override
   public void chooseStrat() {

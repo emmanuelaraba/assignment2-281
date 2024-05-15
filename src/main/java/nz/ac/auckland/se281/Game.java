@@ -37,14 +37,18 @@ public class Game {
     if (sum % 2 == 0) {
       if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", playerName);
+        stats.setLastWin(false);
       } else if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", computerName);
+        stats.setLastWin(true);
       }
     } else {
       if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", playerName);
+        stats.setLastWin(false);
       } else if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", computerName);
+        stats.setLastWin(true);
       }
     }
   }
@@ -88,6 +92,9 @@ public class Game {
     findEvenCount();
   }
 
+  /**
+   * This method finds the number of odd numbers in the player's input and sets the odd count in the
+   */
   public void findOddCount() {
     int count = 0;
     for (Integer integer : playerFingersList) {
@@ -98,6 +105,10 @@ public class Game {
     stats.setOddCount(count);
   }
 
+  /**
+   * This method finds the number of even numbers in the player's input and sets the even count in
+   * the stats object.
+   */
   public void findEvenCount() {
     int count = 0;
     for (Integer integer : playerFingersList) {

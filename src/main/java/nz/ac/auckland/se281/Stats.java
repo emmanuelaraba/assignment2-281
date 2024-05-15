@@ -9,6 +9,7 @@ public class Stats {
   private ArrayList<Integer> moves;
   private Choice playerChoice;
   private int roundNumber = 0;
+  private boolean lastWin;
 
   public Stats(ArrayList<Integer> moves, Choice playerChoice) {
     this.moves = moves;
@@ -46,5 +47,13 @@ public class Stats {
 
   public void incrementRoundNumber() {
     roundNumber++;
+  }
+
+  public void setLastWin(boolean lastWin) {
+    this.lastWin = lastWin;
+  }
+
+  public boolean getLastWin() {
+    return lastWin;
   }
 }

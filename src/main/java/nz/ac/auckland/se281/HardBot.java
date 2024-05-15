@@ -1,17 +1,24 @@
 package nz.ac.auckland.se281;
 
 public class HardBot implements Bot {
-  Stats stats;
+  private Stats stats;
+  private Strategy strategy;
 
   public HardBot(Stats stats) {
     this.stats = stats;
   }
 
   @Override
-  public void chooseStrat() {}
+  public void chooseStrat() {
+    if (stats.getRoundNumber() >= 3) {
+      strategy = new TopStrat(stats);
+    } else {
+      strategy = new RandomStrat();
+    }
+  }
 
-  @Override
   public int returnMove() {
-    return 3;
+    chooseStrat();
+    return strategy.chooseMove();
   }
 }
