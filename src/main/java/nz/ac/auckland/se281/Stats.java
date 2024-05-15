@@ -3,6 +3,7 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.Choice;
 
+/** This class represents the Stats class which is used to store the statistics of the game. */
 public class Stats {
   private int oddCount;
   private int evenCount;

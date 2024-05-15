@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-import java.util.*;
+import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.Choice;
 import nz.ac.auckland.se281.Main.Difficulty;
 
@@ -16,6 +16,14 @@ public class Game {
   private Stats stats;
   private boolean gameStarted = false;
 
+  /**
+   * This method starts a new game by setting the player's name, choice, and difficulty level. It
+   * also resets the round number and initializes the stats object.
+   *
+   * @param difficulty the difficulty level of the bot
+   * @param choice the choice of the player (EVEN or ODD)
+   * @param options the player's name
+   */
   public void newGame(Difficulty difficulty, Choice choice, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options[0]); // prints options[0] as the player name
     this.playerName = options[0];
@@ -33,23 +41,30 @@ public class Game {
    * @param botMove the bot's move, as an integer
    */
   public void getWinner(int botMove) {
+    // parse the player's input to an integer
     int inputFingersInt = Integer.parseInt(inputFingers);
     int sum = inputFingersInt + botMove;
 
-    if (sum % 2 == 0) {
+    if (sum % 2 == 0) { // if we have an even sum
       if (playerChoice == Choice.EVEN) {
+        // declre the player as the winner if the player's choice is EVEN
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", playerName);
+        // set the last bot win to false
         stats.setLastWin(false);
+        // increment the number of player wins by 1
         stats.incrementPlayerWins();
       } else if (playerChoice == Choice.ODD) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "EVEN", computerName);
         stats.setLastWin(true);
         stats.incrementBotWins();
       }
-    } else {
+    } else { // if we have an odd sum
       if (playerChoice == Choice.ODD) {
+        // declare the player as the winner if the player's choice is ODD
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", playerName);
+        // set last bot win to false
         stats.setLastWin(false);
+        // increment the number of player wins by 1
         stats.incrementPlayerWins();
       } else if (playerChoice == Choice.EVEN) {
         MessageCli.PRINT_OUTCOME_ROUND.printMessage(Integer.toString(sum), "ODD", computerName);
@@ -101,6 +116,10 @@ public class Game {
     stats.setEvenCount(count);
   }
 
+  /**
+   * This method plays a round of the game. It asks the player for input, gets the bot's move, and
+   * calculates the winner.
+   */
   public void play() {
     if (!gameStarted) {
       MessageCli.GAME_NOT_STARTED.printMessage();
@@ -123,8 +142,11 @@ public class Game {
 
     // find the winner by using the bot's move
     getWinner(botMove);
+    // increment the round number
     roundNumber++;
+    // increment the round number in the stats object
     stats.incrementRoundNumber();
+    // find the odd finger count and the even finger count
     findOddCount();
     findEvenCount();
   }
@@ -140,13 +162,18 @@ public class Game {
     gameStarted = false;
   }
 
+  /** This method prints the number of rounds won by the player and the bot. */
   public void showStats() {
+    // if the game has not started, print an error message
     if (!gameStarted) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+    // prints the number of rounds won by the player
     MessageCli.PRINT_PLAYER_WINS.printMessage(
         playerName, Integer.toString(stats.getPlayerWins()), Integer.toString(stats.getBotWins()));
+
+    // prints the number of rounds won by the bot
     MessageCli.PRINT_PLAYER_WINS.printMessage(
         computerName,
         Integer.toString(stats.getBotWins()),

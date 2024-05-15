@@ -2,6 +2,7 @@ package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.Choice;
 
+/** This class represents the TopStrat class which implements the Strategy interface. */
 public class TopStrat implements Strategy {
   private Stats stats;
 

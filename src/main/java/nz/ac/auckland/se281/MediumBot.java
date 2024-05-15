@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+/** This class represents the MediumBot class which implements the Bot interface. */
 public class MediumBot implements Bot {
 
   private Stats stats;
@@ -9,6 +10,7 @@ public class MediumBot implements Bot {
     this.stats = stats;
   }
 
+  /** This method chooses the strategy for the bot. */
   @Override
   public void chooseStrat() {
     if (stats.getRoundNumber() >= 3) {
@@ -18,6 +20,12 @@ public class MediumBot implements Bot {
     }
   }
 
+  /**
+   * This method returns the move based on the strategy chosen.
+   *
+   * @return the move based on the strategy chosen
+   */
+  @Override
   public int returnMove() {
     chooseStrat();
     return strategy.chooseMove();
