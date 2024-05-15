@@ -1,8 +1,9 @@
 package nz.ac.auckland.se281;
 
 public class MediumBot implements Bot {
-  private Strategy strategy = new RandomStrat();
+
   private Stats stats;
+  private Strategy strategy;
 
   public MediumBot(Stats stats) {
     this.stats = stats;
@@ -10,13 +11,15 @@ public class MediumBot implements Bot {
 
   @Override
   public void chooseStrat() {
-    if (stats.getRoundNumber() > 3) {
+    if (stats.getRoundNumber() >= 3) {
       strategy = new TopStrat(stats);
+    } else {
+      strategy = new RandomStrat();
     }
   }
 
-  @Override
   public int returnMove() {
+    chooseStrat();
     return strategy.chooseMove();
   }
 }

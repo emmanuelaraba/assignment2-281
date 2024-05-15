@@ -8,9 +8,7 @@ public class HardBot implements Bot {
   }
 
   @Override
-  public void chooseStrat() {
-    System.out.println("Hard Bot");
-  }
+  public void chooseStrat() {}
 
   @Override
   public int returnMove() {
