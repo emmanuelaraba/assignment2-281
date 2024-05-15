@@ -147,5 +147,10 @@ public class Game {
     }
     MessageCli.PRINT_PLAYER_WINS.printMessage(
         playerName, Integer.toString(stats.getPlayerWins()), Integer.toString(stats.getBotWins()));
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage(
+        computerName,
+        Integer.toString(stats.getBotWins()),
+        Integer.toString(stats.getPlayerWins()));
   }
 }
