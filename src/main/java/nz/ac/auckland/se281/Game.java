@@ -104,6 +104,7 @@ public class Game {
   public void play() {
     if (!gameStarted) {
       MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
     }
     // welcomes player to the game \
     MessageCli.START_ROUND.printMessage(Integer.toString(roundNumber));
@@ -136,6 +137,7 @@ public class Game {
     } else {
       MessageCli.PRINT_END_GAME_TIE.printMessage();
     }
+    gameStarted = false;
   }
 
   public void showStats() {}
