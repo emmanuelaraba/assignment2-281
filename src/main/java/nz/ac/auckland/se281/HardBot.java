@@ -13,15 +13,21 @@ public class HardBot implements Bot {
   @Override
   public void chooseStrat() {
     // if the round number is greater than or equal to 3, use the top strategy
-    if (stats.getRoundNumber() >= 3) {
-      strategy = new TopStrat(stats);
+    if (stats.getRoundNumber() < 3) {
+      strategy = new RandomStrat();
     } else {
       // otherwise, based on the last win, continue with the same strategy, or change if we lose
-      // TODO: Change this stick with strategy if we win
-      if (stats.getLastWin()) {
+
+      if (stats.getLastWin() && strategy instanceof TopStrat) {
         strategy = new TopStrat(stats);
       } else {
         strategy = new RandomStrat();
+      }
+
+      if (stats.getLastWin() && strategy instanceof RandomStrat) {
+        strategy = new RandomStrat();
+      } else {
+        strategy = new TopStrat(stats);
       }
     }
   }

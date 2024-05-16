@@ -10,10 +10,20 @@ public class TopStrat implements Strategy {
     this.stats = stats;
   }
 
+  /**
+   * This method will return the round number.
+   *
+   * @return the round number
+   */
   public int getRoundNumber() {
     return stats.getRoundNumber();
   }
 
+  /**
+   * This method will choose the move that the bot will make.
+   *
+   * @return the integer guess that the bot will make.
+   */
   @Override
   public int chooseMove() {
     // // count the number of odd numbers in the fingers list

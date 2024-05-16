@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 import nz.ac.auckland.se281.Main.Difficulty;
 
 /**
- * This class represents the BotFactory class which is used to create a bot based on the difficulty
+ * This class represents the BotFactory class which is used to create a bot based on the difficulty.
  */
 public class BotFactory {
   /**
