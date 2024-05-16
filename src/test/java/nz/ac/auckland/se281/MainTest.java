@@ -786,6 +786,44 @@ public class MainTest {
     }
 
     @Test
-    public void yourtest() throws Exception {}
+    public void TO_01_play_ask_for_input_wrong() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY ODD",
+          "Valerio",
+          //
+          PLAY,
+          "three",
+          "two",
+          "1");
+
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(INVALID_INPUT.getMessage());
+    }
+
+    @Test
+    public void Te_02_play_ask_for_input_wrong() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY ODD",
+          "Valerio",
+          //
+          PLAY,
+          "three two 1",
+          "1");
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(INVALID_INPUT.getMessage());
+    }
+
+    @Test
+    public void TO_03_tie_zero_rounds() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+          NEW_GAME + " EASY ODD",
+          "Valerio",
+          //
+          END_GAME);
+      assertContains(PRINT_END_GAME_TIE.getMessage());
+    }
   }
 }

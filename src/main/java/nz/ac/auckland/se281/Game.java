@@ -79,8 +79,8 @@ public class Game {
    * the player to enter a valid input.
    */
   public void checkInput() {
+    // check if the input is a number and not a string
     int playerFingers = Integer.parseInt(inputFingers);
-
     while (playerFingers < 0 || playerFingers > 5) {
       MessageCli.INVALID_INPUT.printMessage();
       MessageCli.ASK_INPUT.printMessage();
@@ -132,6 +132,14 @@ public class Game {
     // asks the player for input
     MessageCli.ASK_INPUT.printMessage();
     inputFingers = Utils.scanner.nextLine(); // reads input from the user
+    try {
+      Integer.parseInt(inputFingers);
+    } catch (NumberFormatException e) {
+      MessageCli.INVALID_INPUT.printMessage();
+      MessageCli.ASK_INPUT.printMessage();
+      return;
+    }
+
     playerFingersList.add(Integer.parseInt(inputFingers));
 
     int botMove = bot.returnMove();
