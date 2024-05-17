@@ -132,12 +132,17 @@ public class Game {
     // asks the player for input
     MessageCli.ASK_INPUT.printMessage();
     inputFingers = Utils.scanner.nextLine(); // reads input from the user
-    try {
-      Integer.parseInt(inputFingers);
-    } catch (NumberFormatException e) {
-      MessageCli.INVALID_INPUT.printMessage();
-      MessageCli.ASK_INPUT.printMessage();
-      return;
+    while (true) {
+      try {
+        Integer.parseInt(inputFingers);
+        checkInput();
+        break;
+      } catch (NumberFormatException e) {
+        MessageCli.INVALID_INPUT.printMessage();
+        MessageCli.ASK_INPUT.printMessage();
+        inputFingers = Utils.scanner.nextLine();
+        continue;
+      }
     }
 
     playerFingersList.add(Integer.parseInt(inputFingers));

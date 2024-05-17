@@ -825,5 +825,51 @@ public class MainTest {
           END_GAME);
       assertContains(PRINT_END_GAME_TIE.getMessage());
     }
+
+    @Test
+    public void TO_04_play_ask_for_input_wrong() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY ODD",
+          "Valerio",
+          //
+          PLAY,
+          "6",
+          "two",
+          "6",
+          "two",
+          "1");
+
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(INVALID_INPUT.getMessage());
+    }
+
+    @Test
+    public void TO_05_start_new_game_during_new_game() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY ODD",
+          "Valerio",
+          //
+          PLAY,
+          "2",
+          SHOW_STATS,
+          //
+          NEW_GAME + "MEDIUM EVEN",
+          "Valerio",
+          //
+          PLAY,
+          "3",
+          SHOW_STATS);
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertTrue(
+          MainTest.getOutputByRound(1, getOutput())
+              .contains(PRINT_PLAYER_WINS.getMessage("Valerio", "1", "0")));
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertTrue(
+          MainTest.getOutputByRound(1, getOutput())
+              .contains(PRINT_PLAYER_WINS.getMessage("Valerio", "1", "0")));
+    }
   }
 }
